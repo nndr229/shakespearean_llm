@@ -1,58 +1,119 @@
 body {
   font-family: 'Georgia', serif;
+  background-color: #121212;
+  color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
+
+.container {
+  padding: 10px;
+}
+  p{
+    color:azure;
+  }
 
 h1 {
   font-family: 'Times New Roman', serif;
-  text-shadow: 2px 2px 4px #000;
+  text-shadow: 1px 1px 3px #000;
+  font-size: 1.6rem;
+  text-align: center;
+  margin-top: 10px;
 }
-p {
-  color: azure;
+
+.card {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
 }
+
 .card-body {
-  font-size: 1.1rem;
-  line-height: 1.6;
+  height: 60vh;
+  overflow-y: auto;
+  font-size: 0.9rem;
+  padding: 10px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
 }
 
 .input-group input {
-  font-family: 'Courier New', monospace;
+  font-size: 1rem;
+  padding: 10px;
+  background-color: #1e1e1e;
+  border: 1px solid #333;
+  color: #fff;
+  border-radius: 5px;
 }
 
-.btn-warning {
-  color: #000;
-  font-weight: bold;
+.input-group button {
+  font-size: 1rem;
+  padding: 10px;
+  border-radius: 5px;
 }
 
-@media (max-width: 576px) {
-  body {
-    padding-top: 0.5rem;
-  }
+.modal-content {
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  padding: 10px;
+}
 
-  .container {
-    padding: 1rem;
-  }
+.modal-header,
+.modal-body,
+.modal-footer {
+  border: none;
+  padding: 10px;
+}
 
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+p {
+  margin-bottom: 10px;
+  word-wrap: break-word;
+}
+
+.alert {
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 800px) {
+  p{
+    color:azure;
+  }
   h1 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+    font-size: 1.4rem;
   }
-  p {
-    color: azure;
-  }
+
   .card-body {
-    height: 250px;
-    font-size: 0.95rem;
+    height: 55vh;
+    font-size: 0.85rem;
   }
 
   .input-group input,
   .input-group button {
     font-size: 0.9rem;
-    padding: 0.65rem;
+    padding: 8px;
   }
 
-  .modal-body,
-  .modal-header,
-  .modal-footer {
+  .modal-content {
+    padding: 5px;
+  }
+
+  .spinner-border {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .modal-body p {
     font-size: 0.9rem;
   }
 }
