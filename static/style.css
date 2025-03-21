@@ -55,8 +55,8 @@ h1 {
   border-radius: 5px;
   width: 100%;
   box-sizing: border-box;
-  min-width: 0;
 }
+
 
 .input-group button {
   font-size: 1rem;
