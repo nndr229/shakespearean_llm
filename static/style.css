@@ -1,3 +1,4 @@
+/* Base styling */
 body {
   font-family: 'Georgia', serif;
   background-color: #121212;
@@ -9,11 +10,10 @@ body {
 
 .container {
   padding: 10px;
+  max-width: 100%;
 }
-  p{
-    color:azure;
-  }
 
+/* Title */
 h1 {
   font-family: 'Times New Roman', serif;
   text-shadow: 1px 1px 3px #000;
@@ -22,6 +22,7 @@ h1 {
   margin-top: 10px;
 }
 
+/* Chat area */
 .card {
   background-color: rgba(255, 255, 255, 0.1);
   border: none;
@@ -30,36 +31,46 @@ h1 {
 .card-body {
   height: 60vh;
   overflow-y: auto;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   padding: 10px;
+  border-radius: 5px;
+  line-height: 1.5;
 }
 
+/* Input area */
 .input-group {
-  display: flex;
   flex-direction: column;
   gap: 10px;
   margin-top: 15px;
+  flex-wrap: nowrap;
 }
 
 .input-group input {
+  font-family: 'Courier New', monospace;
   font-size: 1rem;
   padding: 10px;
   background-color: #1e1e1e;
   border: 1px solid #333;
   color: #fff;
   border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
 }
 
 .input-group button {
   font-size: 1rem;
   padding: 10px;
   border-radius: 5px;
+  width: 100%;
 }
 
+/* Modals */
 .modal-content {
   background-color: #1e1e1e;
   border-radius: 10px;
   padding: 10px;
+  color: #fff;
 }
 
 .modal-header,
@@ -74,6 +85,7 @@ h1 {
   height: 3rem;
 }
 
+/* Text entries */
 p {
   margin-bottom: 10px;
   word-wrap: break-word;
@@ -84,23 +96,20 @@ p {
   font-size: 0.9rem;
 }
 
-/* Mobile-specific adjustments */
+/* Mobile optimization */
 @media (max-width: 800px) {
-  p{
-    color:azure;
-  }
   h1 {
     font-size: 1.4rem;
   }
 
   .card-body {
     height: 55vh;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
   }
 
   .input-group input,
   .input-group button {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     padding: 8px;
   }
 
