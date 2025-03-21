@@ -11,7 +11,7 @@ if not API_KEY:
     raise ValueError("Please set the GEMINI_API_KEY environment variable")
 
 genai.configure(api_key=API_KEY)
-model_gemini = genai.GenerativeModel('gemini-pro')
+model_gemini = genai.GenerativeModel('gemini-1.5-pro-latest')
 
 # Load the trained associative embedding model and tokenizer
 model = tf.keras.models.load_model('associative_memory_model_new.h5')
