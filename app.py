@@ -3,8 +3,13 @@ import tensorflow as tf
 import numpy as np
 import pickle
 import google.generativeai as genai
+import os  # Import os module to access environment variables
 
-API_KEY = "AIzaSyCVi3XCNi9Il1LnxaloQlKd_tCWle1zjIw"
+# Securely get Gemini API key from environment variables
+API_KEY = os.getenv('GEMINI_API_KEY')
+if not API_KEY:
+    raise ValueError("Please set the GEMINI_API_KEY environment variable")
+
 genai.configure(api_key=API_KEY)
 model_gemini = genai.GenerativeModel('gemini-1.5-pro-latest')
 
