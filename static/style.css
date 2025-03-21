@@ -45,6 +45,11 @@ h1 {
   flex-wrap: nowrap;
 }
 
+form{
+width:100%;
+}
+
+
 .input-group input {
   font-family: 'Courier New', monospace;
   font-size: 1rem;
