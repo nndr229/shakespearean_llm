@@ -45,8 +45,11 @@ h1 {
   flex-wrap: nowrap;
 }
 
-.form-control{
-width:100% !important;
+.input-group > .form-control {
+  width: 100% !important;
+  flex: 1 0 auto !important;
+  min-width: 100% !important;
+  box-sizing: border-box;
 }
 
 
