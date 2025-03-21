@@ -1,0 +1,58 @@
+body {
+  font-family: 'Georgia', serif;
+}
+
+h1 {
+  font-family: 'Times New Roman', serif;
+  text-shadow: 2px 2px 4px #000;
+}
+p {
+  color: azure;
+}
+.card-body {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.input-group input {
+  font-family: 'Courier New', monospace;
+}
+
+.btn-warning {
+  color: #000;
+  font-weight: bold;
+}
+
+@media (max-width: 576px) {
+  body {
+    padding-top: 0.5rem;
+  }
+
+  .container {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  p {
+    color: azure;
+  }
+  .card-body {
+    height: 250px;
+    font-size: 0.95rem;
+  }
+
+  .input-group input,
+  .input-group button {
+    font-size: 0.9rem;
+    padding: 0.65rem;
+  }
+
+  .modal-body,
+  .modal-header,
+  .modal-footer {
+    font-size: 0.9rem;
+  }
+}

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ye Olde Shakespearean Oracle</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body class="bg-dark text-light">
+    <div class="container py-5">
+      <h1 class="text-center mb-4">Ye Olde Shakespearean Oracle</h1>
+      <div class="card bg-secondary bg-opacity-25 border-light">
+        <div
+          class="card-body"
+          id="chat-box"
+          style="height: 400px; overflow-y: auto"
+        >
+          <p class="text-center">
+            Pray, enter thy keyword below, and behold poetic wisdom!
+          </p>
+        </div>
+      </div>
+
+      <div class="input-group mt-4">
+        <input
+          type="text"
+          id="userInput"
+          class="form-control bg-dark text-light border-secondary"
+          placeholder="Enter keyword..."
+        />
+        <button id="sendBtn" class="btn btn-warning">Invoke Muse</button>
+      </div>
+    </div>
+
+    <!-- Loading Modal -->
+    <div class="modal fade" id="loadingModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark text-light">
+          <div class="modal-body text-center">
+            <div class="spinner-border text-warning mb-3" role="status"></div>
+            <p>Summoning poetic inspiration...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Single-Word Enforcement Modal -->
+    <div
+      class="modal fade"
+      id="wordLimitModal"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark text-light">
+          <div class="modal-header border-secondary">
+            <h5 class="modal-title">Hold, dear friend!</h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>Prithee, thou must enter but a single word—no more, no less!</p>
+          </div>
+          <div class="modal-footer border-secondary">
+            <button
+              type="button"
+              class="btn btn-warning"
+              data-bs-dismiss="modal"
+            >
+              Aye, understood
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      const chatBox = document.getElementById('chat-box');
+      const userInput = document.getElementById('userInput');
+      const sendBtn = document.getElementById('sendBtn');
+      const loadingModal = new bootstrap.Modal(
+        document.getElementById('loadingModal')
+      );
+      const wordLimitModal = new bootstrap.Modal(
+        document.getElementById('wordLimitModal')
+      );
+
+      sendBtn.onclick = sendMessage;
+      userInput.onkeydown = (e) => {
+        if (e.key === 'Enter') sendMessage();
+      };
+
+      function appendMessage(sender, message) {
+        chatBox.innerHTML += `<p class="text-light mb-1"><strong>${sender}:</strong> ${message}</p>`;
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }
+
+      function sendMessage() {
+        const message = userInput.value.trim();
+
+        // Clearly enforce single-word input
+        if (message.split(/\s+/).length > 1) {
+          wordLimitModal.show(); // Show quirky Shakespearean modal
+          return;
+        }
+
+        if (!message) return;
+
+        appendMessage('Thee', message);
+        userInput.value = '';
+        loadingModal.show();
+
+        fetch('/generate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ keyword: message }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            loadingModal.hide();
+            const poem = data.reply;
+
+            // Display poem exactly line-by-line
+            poem.forEach((line) => {
+              chatBox.innerHTML += `<p class="text-light mb-1">${line}</p>`;
+            });
+
+            chatBox.scrollTop = chatBox.scrollHeight;
+          })
+          .catch((err) => {
+            loadingModal.hide();
+            appendMessage('Error', 'Alas, an error hath occurred.');
+            console.error(err);
+          });
+      }
+    </script>
+  </body>
+</html>
