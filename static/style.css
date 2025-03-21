@@ -45,8 +45,8 @@ h1 {
   flex-wrap: nowrap;
 }
 
-form{
-width:100%;
+.form-control{
+width:100% !important;
 }
 
 
